@@ -2,7 +2,6 @@ package org.dean.mykotlinapplication
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_photo.*
 
 /**
@@ -19,7 +18,10 @@ class PhotoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_photo)
 
         selectedPhotoUrl = intent.getStringExtra(PHOTO_KEY)
-        Picasso.with(this).load(selectedPhotoUrl).into(photoImageView)
+        GlideApp.with(this)
+                .load(selectedPhotoUrl)
+                .centerCrop()
+                .into(photoImageView)
     }
 
     companion object {

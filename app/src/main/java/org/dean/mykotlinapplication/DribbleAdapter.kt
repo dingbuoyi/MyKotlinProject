@@ -4,7 +4,6 @@ import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_dribble_row.view.*
 import org.dean.mykotlinapplication.data.Teaser
 import org.dean.mykotlinapplication.extensions.inflate
@@ -42,7 +41,10 @@ class DribbleAdapter(private val photos: List<Teaser>) : RecyclerView.Adapter<Dr
 
         fun bindPhoto(photo: Teaser) {
             this.photo = photo
-            Picasso.with(view.context).load(photo.images.teaser).into(view.itemImage)
+            GlideApp.with(view.context)
+                    .load(photo.images.teaser)
+                    .centerCrop()
+                    .into(view.itemImage)
         }
 
         companion object {
