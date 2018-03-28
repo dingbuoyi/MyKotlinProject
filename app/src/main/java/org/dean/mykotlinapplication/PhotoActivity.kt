@@ -26,6 +26,17 @@ class PhotoActivity : AppCompatActivity() {
 
     companion object {
         // 相当于java里面的静态变量，并且一定要定义在class里面, 调用时候class.xx
-        private val PHOTO_KEY = "PHOTO"
+        private const val PHOTO_KEY = "PHOTO" // 用 const 修饰 真正的常量
+        // 没用cosnt修饰的，都是用的getter去获取的，猜测应该是编译成了备用字段，然后生成了getter方法。而用了const修饰符的属性则直接是静态属性。
+        // const只能修饰val，不能修饰var
+        // top-level
+        // const val name = "Kotlin"
+        //
+        // object中
+        // class DemoConstant {
+        //     companion object {
+        //         const val subName = ""
+        //     }
+        //  }
     }
 }
