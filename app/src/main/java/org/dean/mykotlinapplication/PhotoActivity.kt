@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_photo.*
  */
 
 class PhotoActivity : AppCompatActivity() {
-
+    // 变量可以为空
     private var selectedPhotoUrl: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +17,7 @@ class PhotoActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_photo)
 
-        selectedPhotoUrl = intent.getStringExtra(PHOTO_KEY)
+        selectedPhotoUrl = intent.getStringExtra(PhotoActivity.PHOTO_KEY)
         GlideApp.with(this)
                 .load(selectedPhotoUrl)
                 .centerCrop()
@@ -25,6 +25,7 @@ class PhotoActivity : AppCompatActivity() {
     }
 
     companion object {
+        // 相当于java里面的静态变量，并且一定要定义在class里面, 调用时候class.xx
         private val PHOTO_KEY = "PHOTO"
     }
 }

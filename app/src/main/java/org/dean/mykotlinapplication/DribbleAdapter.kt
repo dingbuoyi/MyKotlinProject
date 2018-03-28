@@ -24,18 +24,21 @@ class DribbleAdapter(private val photos: List<Teaser>) : RecyclerView.Adapter<Dr
         return PhotoHolder(inflatedView)
     }
 
-    class PhotoHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
+    //internal constructor 为主构造函数,修饰符为 private、 protected、 internal 和 public
+    class PhotoHolder internal constructor(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
         private var view: View = v
         private var photo: Teaser? = null
 
         init {
+            //主构造函数不能包含任何的代码，
+            //初始化的代码可以放到 init 块中
             v.setOnClickListener(this)
         }
 
         override fun onClick(v: View) {
             val context = itemView.context
             val showPhotoIntent = Intent(context, PhotoActivity::class.java)
-            showPhotoIntent.putExtra(PHOTO_KEY, photo?.images?.teaser)
+            showPhotoIntent.putExtra(PHOTO_KEY, this.photo?.images?.teaser)
             context.startActivity(showPhotoIntent)
         }
 
@@ -48,6 +51,7 @@ class DribbleAdapter(private val photos: List<Teaser>) : RecyclerView.Adapter<Dr
         }
 
         companion object {
+            //静态变量
             private val PHOTO_KEY = "PHOTO"
         }
     }
